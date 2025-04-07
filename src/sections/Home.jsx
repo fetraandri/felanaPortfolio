@@ -9,7 +9,7 @@ function Home() {
           Bienvenue sur mon Portfolio
         </h2>
         <p className="text-lg text-gris-fonce mb-6">
-          Je suis [Ton Nom], un(e) [ton métier, ex. Développeur Web] passionné(e) par la création
+          Je suis Felana, passionnée par la création
           de solutions modernes et élégantes.
         </p>
         <a

@@ -2,12 +2,14 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // Inclut tous les fichiers JS/TS/JSX/TSX dans le dossier src
+    "./src/**/*.{js,ts,jsx,tsx}",
+    // Ajoute le chemin pour Material Tailwind
+    "./node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        // Ajoute tes couleurs personnalisées ici
         "rose-poudre": "#f6d1c1", // 🎀 Rose poudré
         "lavande-claire": "#d6c9f0", // 💎 Lavande claire
         "blanc-casse": "#fdfdfd", // 🤍 Blanc cassé
