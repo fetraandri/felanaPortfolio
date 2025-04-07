@@ -1,4 +1,8 @@
+import aboutData from '../data/aboutData';
+
 function About() {
+  const { name, profession, experience, description, skills } = aboutData;
+
   return (
     <section id="about" className="py-20 bg-blanc-casse">
       <div className="max-w-5xl mx-auto px-4">
@@ -8,12 +12,10 @@ function About() {
           <div className="w-48 h-48 bg-lavande-claire rounded-full flex-shrink-0"></div>
           <div>
             <p className="text-lg text-gris-fonce mb-4">
-              Je suis [Ton Nom], un(e) [ton métier] avec [X années] d’expérience dans [ton domaine].
-              J’aime créer des projets qui allient design et fonctionnalité.
+              Je suis {name}, un(e) {profession} avec {experience} d’expérience. {description}
             </p>
             <p className="text-lg text-gris-fonce">
-              Mes compétences incluent [liste tes compétences, ex. React, Tailwind CSS, etc.]. Je suis
-              toujours à la recherche de nouveaux défis pour améliorer mes compétences.
+              Mes compétences incluent : {skills.join(', ')}.
             </p>
           </div>
         </div>

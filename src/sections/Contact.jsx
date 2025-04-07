@@ -1,3 +1,5 @@
+import contactData from '../data/contactData';
+
 function Contact() {
   return (
     <section id="contact" className="py-20 bg-blanc-casse">
@@ -44,6 +46,15 @@ function Contact() {
             Envoyer
           </button>
         </form>
+        <p className="mt-6 text-center text-gris-fonce">
+          Ou contactez-moi directement à :{' '}
+          <a
+            href={`mailto:${contactData.email}`}
+            className="text-rose-poudre hover:text-lavande-claire transition-colors duration-300"
+          >
+            {contactData.email}
+          </a>
+        </p>
       </div>
     </section>
   );
