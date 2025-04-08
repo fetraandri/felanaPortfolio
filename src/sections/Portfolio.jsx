@@ -1,29 +1,48 @@
-import projectsData from '../data/projectsData';
+import Slider from "react-slick";
+import experiencesData from '../data/experiencesData';
 
 function Portfolio() {
+  // Paramètres du carrousel
+  const settings = {
+    dots: true, // Afficher les points de navigation
+    infinite: true, // Boucle infinie
+    speed: 500, // Vitesse de transition (ms)
+    slidesToShow: 2, // Nombre de cartes visibles à la fois
+    slidesToScroll: 1, // Nombre de cartes à faire défiler à chaque clic
+    autoplay: true, // Défilement automatique
+    autoplaySpeed: 3000, // Délai entre chaque défilement automatique (ms)
+    arrows: true, // Afficher les flèches de navigation
+    responsive: [
+      {
+        breakpoint: 1024, // En dessous de 1024px (lg)
+        settings: {
+          slidesToShow: 1, // 1 carte visible sur tablette/mobile
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <section id="portfolio" className="py-20 bg-vert-sauge">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-gris-fonce text-center mb-10">Mes expériences</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsData.map((project) => (
-            <div key={project.id} className="bg-blanc-casse rounded-lg shadow-lg p-6">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
-              <h3 className="text-xl font-semibold text-gris-fonce mb-2">{project.title}</h3>
-              <p className="text-gris-fonce mb-4">{project.description}</p>
-              <a
-                href={project.link}
-                className="text-rose-poudre hover:text-lavande-claire transition-colors duration-300"
-              >
-                Voir le projet
-              </a>
+        <h2 className="text-4xl font-bold text-gris-fonce text-center mb-10">Expériences</h2>
+        <Slider {...settings}>
+          {experiencesData.map((experience) => (
+            <div key={experience.id} className="px-4">
+              <div className="bg-blanc-casse rounded-lg shadow-lg p-6 h-full">
+                <h3 className="text-xl font-semibold text-gris-fonce mb-2">{experience.title}</h3>
+                <p className="text-lg font-medium text-rose-poudre mb-2">{experience.company}</p>
+                <p className="text-sm text-gris-fonce mb-4">{experience.period}</p>
+                <p className="text-gris-fonce mb-4">{experience.description}</p>
+                {/* Espace pour ajouter une description de l'entreprise */}
+                <p className="text-gris-fonce italic">
+                  [Description de l'entreprise à ajouter]
+                </p>
+              </div>
             </div>
           ))}
-        </div>
+        </Slider>
       </div>
     </section>
   );
