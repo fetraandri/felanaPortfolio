@@ -35,10 +35,6 @@ function Portfolio() {
                 <p className="text-lg font-medium text-rose-poudre mb-2">{experience.company}</p>
                 <p className="text-sm text-gris-fonce mb-4">{experience.period}</p>
                 <p className="text-gris-fonce mb-4">{experience.description}</p>
-                {/* Espace pour ajouter une description de l'entreprise */}
-                <p className="text-gris-fonce italic">
-                  [Description de l'entreprise à ajouter]
-                </p>
               </div>
             </div>
           ))}

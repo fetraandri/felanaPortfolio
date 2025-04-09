@@ -4,7 +4,7 @@ function Home() {
   return (
     <section
       id="home"
-      className="min-h-screen bg-vert-sauge pt-16 flex items-center justify-center"
+      className="min-h-screen bg-rose-50 pt-16 flex items-center justify-center"
     >
       <div className="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-8">
         {/* Partie gauche : Image */}
@@ -28,7 +28,7 @@ function Home() {
           <p className="text-lg md:text-xl text-gris-fonce mb-6">
             Je suis Felana, passionnée par la création de solutions modernes et élégantes.
           </p>
-          <p className="text-2xl md:text-3xl lg:text-4xl font-semibold text-rose-poudre mb-6">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-semibold  mb-6 ">
            ASSISTANTE VIRTUELLE , FORFAITISTE
           </p>
           <a
