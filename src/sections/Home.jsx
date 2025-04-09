@@ -1,4 +1,5 @@
 import felanaImage from '../assets/felanawithoutbg.png';
+import { ContainerTextFlip } from '../components/ContainerTextFlip'; 
 
 function Home() {
   return (
@@ -15,7 +16,6 @@ function Home() {
               alt="Felana"
               className="w-3/4 lg:w-full max-w-md h-auto object-contain rounded-lg shadow-2xl"
             />
-            {/* Ombre personnalisée */}
             <div className="absolute inset-0 rounded-lg shadow-[10px_10px_20px_rgba(51,51,51,0.3)] pointer-events-none"></div>
           </div>
         </div>
@@ -25,18 +25,11 @@ function Home() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gris-fonce mb-4">
             Bienvenue sur mon Portfolio
           </h2>
-          <p className="text-lg md:text-xl text-gris-fonce mb-6">
-            Je suis Felana, passionnée par la création de solutions modernes et élégantes.
+          <p className="text-lg md:text-xl text-gris-fonce mb-6 text-justify">
+          Je suis Felana, motivée par l'idée d'apporter des solutions efficaces et professionnelles dans le domaine du service client et du tourisme. Animée par le désir d’accompagner les équipes et les clients avec dynamisme et organisation, je mets un point d’honneur à optimiser chaque expérience. Engagée à valoriser mes compétences en communication et en gestion, je m’adapte rapidement aux défis professionnels. Passionnée par l’optimisation des relations clients, je cherche à contribuer à la réussite collective avec sérieux et enthousiasme.
           </p>
-          <p className="text-2xl md:text-3xl lg:text-4xl font-semibold  mb-6 ">
-           ASSISTANTE VIRTUELLE , FORFAITISTE
-          </p>
-          <a
-            href="#portfolio"
-            className="inline-block bg-rose-poudre text-gris-fonce px-6 py-3 rounded-lg font-semibold hover:bg-lavande-claire transition-colors duration-300"
-          >
-            Voir mes expériences
-          </a>
+          <ContainerTextFlip /> {/* Intégration ici */}
+          
         </div>
       </div>
     </section>
