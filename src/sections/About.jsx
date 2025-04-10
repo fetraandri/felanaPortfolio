@@ -51,7 +51,7 @@ function About() {
             />
             <div>
               <p className="text-lg text-gris-fonce mb-4 text-justify">
-                Je suis {name}, un(e) {profession} avec {experience} d’expérience. {description}
+                Je suis {name},  {description}
               </p>
             </div>
           </div>
