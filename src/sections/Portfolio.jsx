@@ -29,11 +29,11 @@ function AnimatedCard({ experience }) {
       variants={cardVariant}
       initial="hidden"
       animate={control}
-      className="px-4"
+      className="px-4 pb-8"
     >
       <div className="bg-blanc-casse rounded-lg shadow-lg p-6 h-full">
         <h3 className="text-xl font-semibold text-gris-fonce mb-2">{experience.title}</h3>
-        <p className="text-lg font-medium text-rose-poudre mb-2">{experience.company}</p>
+        <p className="text-lg font-medium text-red-800 mb-2">{experience.company}</p>
         <p className="text-sm text-gris-fonce mb-4">{experience.period}</p>
         <p className="text-gris-fonce mb-4">{experience.description}</p>
       </div>
@@ -63,7 +63,7 @@ function Portfolio() {
   };
 
   return (
-    <section id="portfolio" className="py-20 bg-rose-50">
+    <section id="portfolio" className="py-20 bg-stone-50">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-gris-fonce text-center mb-10">Expériences</h2>
         <Slider {...settings}>

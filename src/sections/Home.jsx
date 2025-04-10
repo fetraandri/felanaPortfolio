@@ -39,7 +39,7 @@ function Home() {
   return (
     <section
       id="home"
-      className="min-h-screen bg-rose-50 pt-16 flex items-center justify-center"
+      className="min-h-screen bg-stone-50 pt-16 flex items-center justify-center"
     >
       <div className="max-w-6xl mx-auto px-4">
         <AnimatedSection>

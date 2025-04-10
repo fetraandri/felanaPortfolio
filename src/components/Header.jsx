@@ -103,7 +103,7 @@ function Header() {
             as="a"
             href="#home"
             variant="h6"
-            className="cursor-pointer py-1.5 text-rose-poudre font-bold pr-6"
+            className="cursor-pointer py-1.5 text-red-800 font-bold pr-6"
             onClick={(e) => {
               e.preventDefault();
               handleScroll("home");
