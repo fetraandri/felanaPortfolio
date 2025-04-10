@@ -24,7 +24,7 @@ function Portfolio() {
   };
 
   return (
-    <section id="portfolio" className="py-20 bg-vert-sauge">
+    <section id="portfolio" className="py-20 bg-rose-50">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-gris-fonce text-center mb-10">Expériences</h2>
         <Slider {...settings}>

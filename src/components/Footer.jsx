@@ -12,12 +12,7 @@ function Footer() {
           >
             LinkedIn
           </a>
-          <a
-            href={contactData.github}
-            className="hover:text-rose-poudre transition-colors duration-300"
-          >
-            GitHub
-          </a>
+          
           <a
             href={`mailto:${contactData.email}`}
             className="hover:text-rose-poudre transition-colors duration-300"

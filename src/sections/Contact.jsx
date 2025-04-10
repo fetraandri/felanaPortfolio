@@ -13,7 +13,7 @@ function Contact() {
             <input
               type="text"
               id="name"
-              className="w-full p-3 rounded-lg bg-vert-sauge text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire"
+              className="w-full p-3 rounded-lg bg-rose-50 text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire"
               placeholder="Votre nom"
             />
           </div>
@@ -24,7 +24,7 @@ function Contact() {
             <input
               type="email"
               id="email"
-              className="w-full p-3 rounded-lg bg-vert-sauge text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire"
+              className="w-full p-3 rounded-lg bg-rose-50 text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire"
               placeholder="Votre email"
             />
           </div>
@@ -35,7 +35,7 @@ function Contact() {
             <textarea
               id="message"
               rows="5"
-              className="w-full p-3 rounded-lg bg-vert-sauge text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire"
+              className="w-full p-3 rounded-lg bg-rose-50 text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire"
               placeholder="Votre message"
             ></textarea>
           </div>
