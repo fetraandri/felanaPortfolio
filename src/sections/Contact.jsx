@@ -43,13 +43,13 @@ function Contact() {
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-gris-fonce text-center mb-10">Contactez-moi</h2>
         <AnimatedSection>
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-20">
             {/* Animation Lottie à gauche */}
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 ">
               <Lottie
                 animationData={customerSupportAnimation}
                 loop={true}
-                className="w-full max-w-md mx-auto"
+                className="w-full max-w-xl mx-auto"
               />
             </div>
 
