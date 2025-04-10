@@ -1,22 +1,61 @@
 import Slider from "react-slick";
 import experiencesData from '../data/experiencesData';
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
+
+// Variantes d'animation pour les cartes
+const cardVariant = {
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, scale: 0.8 }
+};
+
+// Composant pour une carte animée
+function AnimatedCard({ experience }) {
+  const control = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.2 });
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={cardVariant}
+      initial="hidden"
+      animate={control}
+      className="px-4"
+    >
+      <div className="bg-blanc-casse rounded-lg shadow-lg p-6 h-full">
+        <h3 className="text-xl font-semibold text-gris-fonce mb-2">{experience.title}</h3>
+        <p className="text-lg font-medium text-rose-poudre mb-2">{experience.company}</p>
+        <p className="text-sm text-gris-fonce mb-4">{experience.period}</p>
+        <p className="text-gris-fonce mb-4">{experience.description}</p>
+      </div>
+    </motion.div>
+  );
+}
 
 function Portfolio() {
-  // Paramètres du carrousel
   const settings = {
-    dots: true, // Afficher les points de navigation
-    infinite: true, // Boucle infinie
-    speed: 500, // Vitesse de transition (ms)
-    slidesToShow: 2, // Nombre de cartes visibles à la fois
-    slidesToScroll: 1, // Nombre de cartes à faire défiler à chaque clic
-    autoplay: true, // Défilement automatique
-    autoplaySpeed: 3000, // Délai entre chaque défilement automatique (ms)
-    arrows: true, // Afficher les flèches de navigation
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
     responsive: [
       {
-        breakpoint: 1024, // En dessous de 1024px (lg)
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 1, // 1 carte visible sur tablette/mobile
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -29,14 +68,7 @@ function Portfolio() {
         <h2 className="text-4xl font-bold text-gris-fonce text-center mb-10">Expériences</h2>
         <Slider {...settings}>
           {experiencesData.map((experience) => (
-            <div key={experience.id} className="px-4">
-              <div className="bg-blanc-casse rounded-lg shadow-lg p-6 h-full">
-                <h3 className="text-xl font-semibold text-gris-fonce mb-2">{experience.title}</h3>
-                <p className="text-lg font-medium text-rose-poudre mb-2">{experience.company}</p>
-                <p className="text-sm text-gris-fonce mb-4">{experience.period}</p>
-                <p className="text-gris-fonce mb-4">{experience.description}</p>
-              </div>
-            </div>
+            <AnimatedCard key={experience.id} experience={experience} />
           ))}
         </Slider>
       </div>
