@@ -1,9 +1,10 @@
+// src/sections/Contact.jsx
 import contactData from '../data/contactData';
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import Lottie from "lottie-react"; 
-import customerSupportAnimation from '../assets/customer-support.json'; 
+import Lottie from "lottie-react";
+import customerSupportAnimation from '../assets/customer-support.json';
 
 // Variantes d'animation
 const sectionVariant = {
@@ -45,10 +46,10 @@ function Contact() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             {/* Animation Lottie à gauche */}
             <div className="w-full lg:w-1/2">
-              <Lottie 
-                animationData={customerSupportAnimation} 
-                loop={true} 
-                className="w-full max-w-md mx-auto" 
+              <Lottie
+                animationData={customerSupportAnimation}
+                loop={true}
+                className="w-full max-w-md mx-auto"
               />
             </div>
 
@@ -90,7 +91,7 @@ function Contact() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-slate-50   text-gris-fonce py-3 rounded-lg font-semibold hover:bg-lavande-claire transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  className="w-full bg-stone-50 text-gris-fonce py-3 rounded-lg font-semibold hover:bg-lavande-claire transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   Envoyer
                 </button>
@@ -99,7 +100,7 @@ function Contact() {
                 Ou contactez-moi directement à :{' '}
                 <a
                   href={`mailto:${contactData.email}`}
-                  className="text-rose-poudre hover:text-lavande-claire transition-colors duration-300"
+                  className="text-red-800 hover:text-lavande-claire transition-colors duration-300"
                 >
                   {contactData.email}
                 </a>
