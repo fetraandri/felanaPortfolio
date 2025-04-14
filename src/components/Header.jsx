@@ -103,7 +103,7 @@ function Header() {
             as="a"
             href="#home"
             variant="h6"
-            className="cursor-pointer py-1.5 text-red-800 font-bold pr-6"
+            className="cursor-pointer py-1.5 text-yellow-950 font-bold pr-6"
             onClick={(e) => {
               e.preventDefault();
               handleScroll("home");
@@ -145,7 +145,7 @@ function Header() {
       {/* Menu mobile avec photo de profil */}
       <Collapse open={openNav}>
         <div className="flex items-center justify-between p-4 lg:hidden">
-          <Typography className="text-gris-fonce font-medium">
+          <Typography className="text-red-50 font-medium">
             Lantoniaina Felana
           </Typography>
           <img

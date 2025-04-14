@@ -1,4 +1,5 @@
 import contactData from '../data/contactData';
+import { FaLinkedin, FaEnvelope } from 'react-icons/fa'; // Import icons
 
 function Footer() {
   return (
@@ -8,16 +9,16 @@ function Footer() {
         <div className="mt-4 space-x-4">
           <a
             href={contactData.linkedin}
-            className="hover:text-rose-poudre transition-colors duration-300"
+            className="hover:text-rose-poudre transition-colors duration-300 inline-flex items-center gap-2"
           >
-            LinkedIn
+            <FaLinkedin /> LinkedIn
           </a>
           
           <a
             href={`mailto:${contactData.email}`}
-            className="hover:text-rose-poudre transition-colors duration-300"
+            className="hover:text-rose-poudre transition-colors duration-300 inline-flex items-center gap-2"
           >
-            Email
+            <FaEnvelope /> Email
           </a>
         </div>
       </div>
