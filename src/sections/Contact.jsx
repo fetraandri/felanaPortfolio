@@ -98,9 +98,9 @@ function FormLogic({ children }) {
     setIsSubmitting(true);
 
     // Remplacez ces valeurs par vos propres identifiants EmailJS
-    const serviceId = 'YOUR_SERVICE_ID';
-    const templateId = 'YOUR_TEMPLATE_ID';
-    const publicKey = 'YOUR_PUBLIC_KEY';
+    const serviceId = 'service_o7kyvz3';
+    const templateId = 'template_sx8qqii';
+    const publicKey = 'YqBDzgzOSdg7BPKh5';
 
     emailjs.send(serviceId, templateId, {
       from_name: formData.name,
