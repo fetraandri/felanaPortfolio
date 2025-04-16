@@ -1,10 +1,10 @@
-// src/sections/Contact.jsx
 import contactData from '../data/contactData';
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import customerSupportAnimation from '../assets/customer-support.json';
+import emailjs from '@emailjs/browser';
 
 // Variantes d'animation
 const sectionVariant = {
@@ -37,6 +37,171 @@ function AnimatedSection({ children }) {
   );
 }
 
+// Composant pour un champ de saisie
+function InputField({ label, id, name, type, value, onChange, placeholder, required }) {
+  return (
+    <div>
+      <label htmlFor={id} className="block text-gris-fonce mb-2">
+        {label}
+      </label>
+      <input
+        type={type}
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="w-full p-3 rounded-lg bg-stone-50 text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 3d-input"
+        placeholder={placeholder}
+      />
+    </div>
+  );
+}
+
+// Composant pour un champ textarea
+function TextAreaField({ label, id, name, value, onChange, placeholder, required, rows }) {
+  return (
+    <div>
+      <label htmlFor={id} className="block text-gris-fonce mb-2">
+        {label}
+      </label>
+      <textarea
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        rows={rows}
+        className="w-full p-3 rounded-lg bg-stone-50 text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 3d-input"
+        placeholder={placeholder}
+      ></textarea>
+    </div>
+  );
+}
+
+// Composant pour la logique du formulaire
+function FormLogic({ children }) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Remplacez ces valeurs par vos propres identifiants EmailJS
+    const serviceId = 'YOUR_SERVICE_ID';
+    const templateId = 'YOUR_TEMPLATE_ID';
+    const publicKey = 'YOUR_PUBLIC_KEY';
+
+    emailjs.send(serviceId, templateId, {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message
+    }, publicKey)
+      .then((response) => {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus(null), 5000);
+      })
+      .catch((error) => {
+        setStatus('error');
+        setTimeout(() => setStatus(null), 5000);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {children({ formData, handleChange, isSubmitting, status })}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className={`w-full py-3 rounded-lg font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 ${
+          isSubmitting 
+            ? 'bg-gray-400 cursor-not-allowed' 
+            : 'bg-stone-50 text-gris-fonce hover:bg-lavande-claire'
+        }`}
+      >
+        {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
+      </button>
+      {status === 'success' && (
+        <p className="mt-4 text-center text-green-600">
+          Message envoyé avec succès !
+        </p>
+      )}
+      {status === 'error' && (
+        <p className="mt-4 text-center text-red-600">
+          Une erreur s'est produite. Veuillez réessayer.
+        </p>
+      )}
+    </form>
+  );
+}
+
+// Composant ContactForm
+function ContactForm() {
+  return (
+    <div className="w-full lg:w-1/2">
+      <FormLogic>
+        {({ formData, handleChange }) => (
+          <>
+            <InputField
+              label="Nom"
+              id="name"
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Votre nom"
+              required
+            />
+            <InputField
+              label="Email"
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Votre email"
+              required
+            />
+            <TextAreaField
+              label="Message"
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Votre message"
+              required
+              rows="5"
+            />
+          </>
+        )}
+      </FormLogic>
+      <p className="mt-6 text-center text-gris-fonce">
+        Ou contactez-moi directement à :{' '}
+        <a
+          href={`mailto:${contactData.email}`}
+          className="text-red-800 hover:text-lavande-claire transition-colors duration-300"
+        >
+          {contactData.email}
+        </a>
+      </p>
+    </div>
+  );
+}
+
 function Contact() {
   return (
     <section id="contact" className="py-20 bg-blanc-casse">
@@ -45,67 +210,15 @@ function Contact() {
         <AnimatedSection>
           <div className="flex flex-col lg:flex-row items-center justify-between gap-20">
             {/* Animation Lottie à gauche */}
-            <div className="w-full lg:w-1/2 ">
+            <div className="w-full lg:w-1/2">
               <Lottie
                 animationData={customerSupportAnimation}
                 loop={true}
                 className="w-full max-w-xl mx-auto"
               />
             </div>
-
             {/* Formulaire à droite */}
-            <div className="w-full lg:w-1/2">
-              <form className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-gris-fonce mb-2">
-                    Nom
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full p-3 rounded-lg bg-stone-50 text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 3d-input"
-                    placeholder="Votre nom"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-gris-fonce mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full p-3 rounded-lg bg-stone-50 text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 3d-input"
-                    placeholder="Votre email"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-gris-fonce mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows="5"
-                    className="w-full p-3 rounded-lg bg-stone-50 text-gris-fonce focus:outline-none focus:ring-2 focus:ring-lavande-claire shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 3d-input"
-                    placeholder="Votre message"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-stone-50 text-gris-fonce py-3 rounded-lg font-semibold hover:bg-lavande-claire transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                >
-                  Envoyer
-                </button>
-              </form>
-              <p className="mt-6 text-center text-gris-fonce">
-                Ou contactez-moi directement à :{' '}
-                <a
-                  href={`mailto:${contactData.email}`}
-                  className="text-red-800 hover:text-lavande-claire transition-colors duration-300"
-                >
-                  {contactData.email}
-                </a>
-              </p>
-            </div>
+            <ContactForm />
           </div>
         </AnimatedSection>
       </div>
